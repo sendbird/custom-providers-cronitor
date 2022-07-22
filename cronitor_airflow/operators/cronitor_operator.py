@@ -61,11 +61,12 @@ class CronitorOperator(BaseOperator):
     if os.getenv('ENV', 'dev') not in cronitor_supress_for and context.get('run_id', '').startswith('scheduled__'):
       execution_timeout = default_args.get('execution_timeout')
 
+      additional_tags = default_args.get('cronitor_additional_tags', {})
       hook.get_monitor(
-        monitor_name=self._monitor_name(cronitor_additional_tags, context.get('dag').dag_id),
+        monitor_name=self._monitor_name(additional_tags, context.get('dag').dag_id),
         schedule=context.get('dag').schedule_interval or 'every 24 hours',
         notify=default_args.get('cronitor_notify', CronNotification.DEFAULT.value),
-        tags=self._tags(default_args.get('cronitor_additional_tags', {})),
+        tags=self._tags(additional_tags),
         grace_seconds=default_args.get('cronitor_grace_seconds', 600),
         timeout=int(execution_timeout.total_seconds() / 60) if execution_timeout else None
       )

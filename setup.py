@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
   name='custom-providers-cronitor',
-  version='0.0.2',
+  version='0.0.3',
   packages=['cronitor_airflow',
             'cronitor_airflow.operators',
             'cronitor_airflow.hooks'],

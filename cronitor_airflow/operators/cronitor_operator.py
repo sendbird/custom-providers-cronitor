@@ -4,7 +4,8 @@ import os
 from airflow.models import BaseOperator
 from airflow.utils.context import Context
 
-from common.cronitor_airflow.hooks.cronitor_hook import CronitorHook
+from cronitor_airflow.hooks.cronitor_hook import CronitorHook
+from cronitor_airflow import CronNotification
 
 
 CronitorState = Literal["run", "complete", "fail", "ok"]

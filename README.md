@@ -1,4 +1,4 @@
-# cronitor-airflow
+# cronitor_airflow
 Cronitor integration for Airflow
 
 

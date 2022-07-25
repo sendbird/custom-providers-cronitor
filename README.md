@@ -65,6 +65,3 @@ For a full example of how to use the operator, take a look at this [sample DAG](
 monitor name is inferred from the name of the dag_id and additional_tags.
 For example, if dag_id is `test_succeed` and additional_tags are `{'team': 'dp', 'env': 'dev'}` then
 name will be `dw-airflow-dag-test_succeed-team:dp-env:dev`.
-
-#### Usage Notes
-* When using the operator, `monitor_key` must be the key of your Cronitor monitor. You cannot use the monitor's display name.

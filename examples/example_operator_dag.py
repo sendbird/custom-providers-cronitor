@@ -6,6 +6,24 @@ import time
 from airflow.operators.python import PythonOperator
 import random
 
+"""
+possible cronitor related default_args
+:param cronitor_suppress_for: env in which cronitor alert should be suppressed for.
+default) tuple('dev')
+e.g) ('dev', 'stg') or tuple('dev')
+:param cronitor_notify: alert notified through this notification.
+default) CronNotification.DEFAULT.value (dummy notification)
+e.g) CronNotification.DP_CRON.value
+:param cronitor_additional_tags: tags are created for the monitor and these tags are concatenated to the monitor name.
+default) {}
+e.g) {'team': 'dp', 'env': 'stg'} 
+:param cronitor_grace_seconds: the monitor can wait this much seconds before it triggers the actual alert.
+default) 600
+e.g) 1200
+:param execution_timeout:
+default) None
+e.g) timedelta(minutes=10)
+"""
 with DAG(
   'test_succeed',
   description='this is a test dag',
@@ -21,6 +39,14 @@ with DAG(
   },
   start_date=datetime(2022, 4, 15)
 ) as dag:
+  """
+  task_id and state are required.
+  possible states the following:
+    run
+    complete
+    fail
+    ok
+  """
   start = CronitorOperator(
     task_id='cronitor-start',
     state='run',

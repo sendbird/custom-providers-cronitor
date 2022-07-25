@@ -28,5 +28,37 @@ from cronitor_airflow.operators.cronitor_operator import CronitorOperator
 
 For a full example of how to use the operator, take a look at this [sample DAG](examples/example_operator_dag.py) provided.
 
+#### possible cronitor related default_args
+
+* `cronitor_suppress_for`: env in which cronitor alert should be suppressed for.
+  
+    default) tuple('dev')
+        
+    e.g) ('dev', 'stg') or tuple('dev')
+
+* `cronitor_notify`: alert notified through this notification.
+
+    default) CronNotification.DEFAULT.value (dummy notification)
+    
+    e.g) CronNotification.DP_CRON.value
+
+* `cronitor_additional_tags`: tags are created for the monitor and these tags are concatenated to the monitor name.
+
+    default) {}
+    
+    e.g) {'team': 'dp', 'env': 'stg'} 
+
+* `cronitor_grace_seconds`: the monitor can wait this much seconds before it triggers the actual alert.
+
+    default) 600
+    
+    e.g) 1200
+
+* `execution_timeout`:
+
+    default) None
+    
+    e.g) timedelta(minutes=10)
+
 #### Usage Notes
 * When using the operator, `monitor_key` must be the key of your Cronitor monitor. You cannot use the monitor's display name.

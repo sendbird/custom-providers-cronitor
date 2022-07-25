@@ -28,9 +28,9 @@ from cronitor_airflow.operators.cronitor_operator import CronitorOperator
 
 For a full example of how to use the operator, take a look at this [sample DAG](examples/example_operator_dag.py) provided.
 
-#### possible cronitor related default_args
+#### Possible cronitor related default_args
 
-* `cronitor_suppress_for`: env in which cronitor alert should be suppressed for.
+* `cronitor_supress_for`: env in which cronitor alert should be suppressed for.
   
     default) tuple('dev')
         
@@ -59,6 +59,12 @@ For a full example of how to use the operator, take a look at this [sample DAG](
     default) None
     
     e.g) timedelta(minutes=10)
+
+#### Monitor name is inferred from the dag_id name and additional_tags
+
+monitor name is inferred from the name of the dag_id and additional_tags.
+For example, if dag_id is `test_succeed` and additional_tags are `{'team': 'dp', 'env': 'dev'}` then
+name will be `dw-airflow-dag-test_succeed-team:dp-env:dev`.
 
 #### Usage Notes
 * When using the operator, `monitor_key` must be the key of your Cronitor monitor. You cannot use the monitor's display name.

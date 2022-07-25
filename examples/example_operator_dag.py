@@ -8,7 +8,7 @@ import random
 
 """
 possible cronitor related default_args
-:param cronitor_suppress_for: env in which cronitor alert should be suppressed for.
+:param cronitor_supress_for: env in which cronitor alert should be suppressed for.
 default) tuple('dev')
 e.g) ('dev', 'stg') or tuple('dev')
 :param cronitor_notify: alert notified through this notification.
@@ -23,6 +23,10 @@ e.g) 1200
 :param execution_timeout:
 default) None
 e.g) timedelta(minutes=10)
+
+monitor name is inferred from the name of the dag_id and additional_tags.
+For example, if dag_id is test_succeed and additional_tags are {'team': 'dp', 'env': 'dev'} then
+name will be `dw-airflow-dag-test_succeed-team:dp-env:dev`.
 """
 with DAG(
   'test_succeed',

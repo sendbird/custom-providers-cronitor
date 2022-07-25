@@ -58,8 +58,8 @@ class CronitorOperator(BaseOperator):
   def execute(self, context: Context) -> None:
     hook = CronitorHook(cronitor_conn_id='cronitor_default')
     default_args = self.kwargs['default_args']
-    cronitor_supress_for = default_args.get('cronitor_supress_for', tuple('dev'))
-    if os.getenv('ENV', 'dev') not in cronitor_supress_for and context.get('run_id', '').startswith('scheduled__'):
+    cronitor_suppress_for = default_args.get('cronitor_suppress_for', tuple('dev'))
+    if os.getenv('ENV', 'dev') not in cronitor_suppress_for and context.get('run_id', '').startswith('scheduled__'):
       execution_timeout = default_args.get('execution_timeout')
 
       additional_tags = default_args.get('cronitor_additional_tags', {})

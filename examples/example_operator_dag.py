@@ -8,7 +8,7 @@ import random
 
 """
 possible cronitor related default_args
-:param cronitor_supress_for: env in which cronitor alert should be suppressed for.
+:param cronitor_suppress_for: env in which cronitor alert should be suppressed for.
 default) tuple('dev')
 e.g) ('dev', 'stg') or tuple('dev')
 :param cronitor_notify: alert notified through this notification.

@@ -30,7 +30,7 @@ For a full example of how to use the operator, take a look at this [sample DAG](
 
 #### Possible cronitor related default_args
 
-* `cronitor_supress_for`: env in which cronitor alert should be suppressed for.
+* `cronitor_suppress_for`: env in which cronitor alert should be suppressed for.
   
     default) tuple('dev')
         
